@@ -6,7 +6,7 @@
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:46:07 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/02/22 16:03:45 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:49:57 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,9 @@ int	main(int argc, char *argv[], char *envp[])
 	pipex.comands = ft_split(pipex->paths, ':');
 	pid1 = fork();
 	if (pid1 == 0)
-		//abre el proceso1.	
-	//execve("PATH", "COMAND", "ATT");
+		ft_exec_cmd1(argv, envp, pipex);
+	pid2 = fork();
+	if (pid2 == 0)
+		ft_exec_cmd2(argv, envp, pipex);
 	return (0);	
 }

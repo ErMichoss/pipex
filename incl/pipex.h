@@ -6,7 +6,7 @@
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:05:22 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/02/22 15:17:39 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:50:37 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,14 @@ int	main(int argc, char *argv[], char *envp[]);
 //** ERRORS **
 
 void	ft_error_msg(char *s);
+
+//** PIPEX **
+
+char	*get_comand(char **paths, char *comand);
+void	ft_exec_cmd1(char **argv, char **envp, t_pipex *pipex);
+void	ft_exec_cmd2(char **argv, char **envp, t_pipex *pipex);
+char	*ft_findpath(char **envp);
+void	free_process(t_pipex *pipex);
 
 //** GNL **
 
