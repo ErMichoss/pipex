@@ -6,9 +6,11 @@
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:46:07 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/02/22 16:49:57 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:22:55 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../incl/pipex.h"
 
 char	*ft_findpath(char **envp)
 {
@@ -44,15 +46,15 @@ int	main(int argc, char *argv[], char *envp[])
 	pipex->outfile = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (pipex->outfile == -1)
 		ft_error_msg("Error opening file");
-	if (pipe(pipex.pipe_fd) < 0)
+	if (pipe(pipex->pipe_fd) < 0)
 		ft_error_msg("Error with pipe");
-	pipex.paths = ft_findpath(envp);
-	pipex.comands = ft_split(pipex->paths, ':');
-	pid1 = fork();
-	if (pid1 == 0)
+	pipex->paths = ft_findpath(envp);
+	pipex->comands = ft_split(pipex->paths, ':');
+	pipex->pid1 = fork();
+	if (pipex->pid1 == 0)
 		ft_exec_cmd1(argv, envp, pipex);
-	pid2 = fork();
-	if (pid2 == 0)
+	pipex->pid2 = fork();
+	if (pipex->pid2 == 0)
 		ft_exec_cmd2(argv, envp, pipex);
 	return (0);	
 }

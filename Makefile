@@ -6,7 +6,7 @@
 #    By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 15:45:13 by nicgonza          #+#    #+#              #
-#    Updated: 2024/02/19 15:45:40 by nicgonza         ###   ########.fr        #
+#    Updated: 2024/02/23 10:19:05 by nicgonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,14 @@ RM = rm -f
 
 LIB = ar rcs
 
-SRCS = src/
+SRCS = src/main.c \
+	   src/ft_split.c \
+	   src/ft_strjoin.c \
+	   src/ft_exc_cmd.c \
+	   src/ft_strcmp.c \
+	   src/free.c
 
-OBJS = $(SRCS: .c=.o)
+OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 

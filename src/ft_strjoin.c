@@ -6,9 +6,23 @@
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:05:44 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/02/22 15:05:55 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:23:40 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../incl/pipex.h"
+
+size_t	ft_strlen(char const *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

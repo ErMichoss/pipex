@@ -6,9 +6,11 @@
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 16:37:40 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/02/22 16:41:11 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:23:03 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../incl/pipex.h"
 
 void	free_process(t_pipex *pipex)
 {
@@ -20,6 +22,6 @@ void	free_process(t_pipex *pipex)
 		free(pipex->comands[i]);
 		i++;
 	}
-	free(pipex->comands;
+	free(pipex->comands);
 	free(pipex->exe);
 }

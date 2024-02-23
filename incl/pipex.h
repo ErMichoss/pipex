@@ -6,7 +6,7 @@
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:05:22 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/02/22 16:50:37 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:23:49 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 # define PIPEX_H
 
 # include <unistd.h>
-# include <stdio.h>
-# include <string.h>
-# include <stdbool.h>
+# include <sys/types.h>
+# include <sys/uio.h>
 # include <stdlib.h>
-# include <limits.h>
 # include <fcntl.h>
+# include <sys/wait.h>
+# include <string.h>
+# include <stdio.h>
 
 # ifndef BUFFER_SIZE
 # define BUFFER_SIZE 10
@@ -32,7 +33,7 @@ typedef struct s_pipex{
 	char	**comand;
 	char	*paths;
 	char	**comands;
-	int		pipe_fd[2]
+	int		pipe_fd[2];
 	int		infile;
 	int		outfile;
 }			t_pipex;
@@ -52,19 +53,8 @@ char	*get_comand(char **paths, char *comand);
 void	ft_exec_cmd1(char **argv, char **envp, t_pipex *pipex);
 void	ft_exec_cmd2(char **argv, char **envp, t_pipex *pipex);
 char	*ft_findpath(char **envp);
+void	free_pprocess(t_pipex *pipex);
 void	free_process(t_pipex *pipex);
-
-//** GNL **
-
-char		*get_next_line(int fd);
-size_t		ft_strlen(char *str);
-char		*ft_strchr(char *s, int c);
-char		*ft_strjoin(char *board, char *buffer);
-char		*ft_strdup(char *s1);
-char		*ft_new_line(char *board);
-char		*ft_line(char *board)
-char		*ft_read(int fd, char *board);
-
 
 //** SPLIT **
 
@@ -72,11 +62,12 @@ char	**ft_empty_split(void);
 char	*ft_strdp_custom(const char *s, size_t n);
 char	**ft_free_str(char **aux);
 int		ft_countc(char const *s, char c);
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c);
 
 //** FUNCTIONS **
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strjoin(char const *s1, char const *s2);
+size_t	ft_strlen(char const *str);
 
 #endif

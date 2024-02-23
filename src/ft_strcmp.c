@@ -6,9 +6,11 @@
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 12:10:21 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/02/22 12:10:37 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:22:00 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../incl/pipex.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {

@@ -6,14 +6,11 @@
 /*   By: davgalle <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 13:44:26 by davgalle          #+#    #+#             */
-/*   Updated: 2024/02/22 13:58:24 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:21:49 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "../incl/pipex.h"
 
 char	**ft_empty_split(void)
 {
