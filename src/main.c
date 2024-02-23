@@ -6,7 +6,7 @@
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:46:07 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/02/23 10:22:55 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:40:03 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,28 +33,27 @@ void	ft_error_msg(char *s)
 
 int	main(int argc, char *argv[], char *envp[])
 {
-	t_pipex	*pipex;
+	t_pipex	pipex;
 
-	pipex = NULL;
 	if (argc == 1)
 		ft_error_msg("These arguments are necessary!: < archivo1 comando1  comando2 > archivo2");
 	else if (argc != 5)
 		ft_error_msg("Invalid number of arguments!");
-	pipex->infile = open(argv[1], O_RDONLY);
-	if (pipex->infile == -1)
+	pipex.infile = open(argv[1], O_RDONLY);
+	if (pipex.infile == -1)
 		ft_error_msg("Error opening file");
-	pipex->outfile = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
-	if (pipex->outfile == -1)
+	pipex.outfile = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
+	if (pipex.outfile == -1)
 		ft_error_msg("Error opening file");
-	if (pipe(pipex->pipe_fd) < 0)
+	if (pipe(pipex.pipe_fd) < 0)
 		ft_error_msg("Error with pipe");
-	pipex->paths = ft_findpath(envp);
-	pipex->comands = ft_split(pipex->paths, ':');
-	pipex->pid1 = fork();
-	if (pipex->pid1 == 0)
+	pipex.paths = ft_findpath(envp);
+	pipex.comands = ft_split(pipex.paths, ':');
+	pipex.pid1 = fork();
+	if (pipex.pid1 == 0)
 		ft_exec_cmd1(argv, envp, pipex);
-	pipex->pid2 = fork();
-	if (pipex->pid2 == 0)
+	pipex.pid2 = fork();
+	if (pipex.pid2 == 0)
 		ft_exec_cmd2(argv, envp, pipex);
 	return (0);	
 }

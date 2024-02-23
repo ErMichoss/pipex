@@ -6,7 +6,7 @@
 #    By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 15:45:13 by nicgonza          #+#    #+#              #
-#    Updated: 2024/02/23 10:19:05 by nicgonza         ###   ########.fr        #
+#    Updated: 2024/02/23 10:32:15 by nicgonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = pipex
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g3
+CFLAGS = -Wall -Werror -Wextra
 
 RM = rm -f
 

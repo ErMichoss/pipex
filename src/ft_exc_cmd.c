@@ -6,12 +6,12 @@
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:21:26 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/02/23 10:25:20 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/02/23 10:42:55 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/pipex.h
-	"
+#include "../incl/pipex.h"
+
 char	*get_comand(char **paths, char *comand)
 {
 	char	*tmp;
@@ -30,34 +30,34 @@ char	*get_comand(char **paths, char *comand)
 	return (NULL);
 }
 
-void	ft_exec_cmd1(char **argv, char **envp, t_pipex *pipex)
+void	ft_exec_cmd1(char **argv, char **envp, t_pipex pipex)
 {
-	dup2(pipex->pipe[1], 1);
-	close(pipex->pipe[0]);
-	dup2(pipex->infile, 0);
-	pipex->comand = ft_split(argv[2], ' ');
-	pipex->exe = get_comand(pipex->comands, pipex->comand[0]);
-	if (!pipex->exe)
+	dup2(pipex.pipe_fd[1], 1);
+	close(pipex.pipe_fd[0]);
+	dup2(pipex.infile, 0);
+	pipex.comand = ft_split(argv[2], ' ');
+	pipex.exe = get_comand(pipex.comands, pipex.comand[0]);
+	if (!pipex.exe)
 	{
-		free_process(pipex);
+		free_process(&pipex);
 		ft_error_msg("Comando not found :(");
 		exit(1);
 	}
-	execve(pipex->exe, pipex->comand, envp);
+	execve(pipex.exe, pipex.comand, envp);
 }
 
-void	ft_exec_cmd2(char **argv, char **envp, t_pipex *pipex)
+void	ft_exec_cmd2(char **argv, char **envp, t_pipex pipex)
 {
-	dup2(pipex->pipe[0], 0);
-	close(pipex->pipe[1]);
-	dup2(pipex->outfile, 1);
-	pipex->comand = ft_split(argv[3], ' ');
-	pipex->exe = get_comand(pipex->comands, pipex->comand[0]);
-	if (!pipex->exe)
+	dup2(pipex.pipe_fd[0], 0);
+	close(pipex.pipe_fd[1]);
+	dup2(pipex.outfile, 1);
+	pipex.comand = ft_split(argv[3], ' ');
+	pipex.exe = get_comand(pipex.comands, pipex.comand[0]);
+	if (!pipex.exe)
 	{
-		free_process(pipex);
+		free_process(&pipex);
 		ft_error_msg("Comando not found :(");
 		exit(1);
 	}
-	execve(pipex->exe, pipex->comand, envp);
+	execve(pipex.exe, pipex.comand, envp);
 }
