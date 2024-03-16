@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 14:04:41 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/03/08 12:45:23 by nicgonza         ###   ########.fr       */
+/*   Created: 2024/03/04 14:49:21 by nicgonza          #+#    #+#             */
+/*   Updated: 2024/03/04 14:49:36 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/pipex.h"
+#include "../incl/pipex_bonus.h"
 
 char	**ft_empty_split(void)
 {
@@ -57,7 +57,7 @@ char	**ft_free_str(char **aux)
 	return (NULL);
 }
 
-int	ft_countc(char const *s, char c)
+int	ft_countc(const char *s, char c)
 {
 	int	i;
 	int	x;

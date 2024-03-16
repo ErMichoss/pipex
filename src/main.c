@@ -6,7 +6,7 @@
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:46:07 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/02/23 10:40:03 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/03/15 20:21:11 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_error_msg(char *s)
 		write(1, &s[i], 1);
 		i++;
 	}
+	exit(1);
 }
 
 int	main(int argc, char *argv[], char *envp[])
@@ -36,7 +37,7 @@ int	main(int argc, char *argv[], char *envp[])
 	t_pipex	pipex;
 
 	if (argc == 1)
-		ft_error_msg("These arguments are necessary!: < archivo1 comando1  comando2 > archivo2");
+		ft_error_msg("You must put arguments in order for pipex to work");
 	else if (argc != 5)
 		ft_error_msg("Invalid number of arguments!");
 	pipex.infile = open(argv[1], O_RDONLY);
@@ -55,5 +56,5 @@ int	main(int argc, char *argv[], char *envp[])
 	pipex.pid2 = fork();
 	if (pipex.pid2 == 0)
 		ft_exec_cmd2(argv, envp, pipex);
-	return (0);	
+	return (0);
 }

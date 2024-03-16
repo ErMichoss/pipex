@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 15:05:44 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/03/08 12:45:08 by nicgonza         ###   ########.fr       */
+/*   Created: 2024/02/24 10:53:14 by nicgonza          #+#    #+#             */
+/*   Updated: 2024/03/02 17:43:33 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/pipex.h"
+#include "../incl/pipex_bonus.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int	ft_strncmp(char *str, char *dst, int numb)
 {
-	char	*j_str;
-	size_t	i;
-	size_t	j;
+	int	i;
 
-	j_str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
-	if (!j_str)
-		return (NULL);
 	i = 0;
-	while (s1[i] != '\0')
+	while ((str[i] != '\0' || dst[i] != '\0') && i < numb)
 	{
-		j_str[i] = s1[i];
+		if (str[i] != dst[i])
+			return ((char)str[i] - (char)dst[i]);
 		i++;
 	}
-	j = 0;
-	while (s2[j] != '\0')
-	{
-		j_str[i] = s2[j];
-		i++;
-		j++;
-	}
-	j_str[i] = '\0';
-	return (j_str);
+	return (0);
 }

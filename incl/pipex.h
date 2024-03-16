@@ -6,11 +6,11 @@
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:05:22 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/02/23 10:38:50 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/03/12 17:38:01 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	PIPEX_H
+#ifndef PIPEX_H
 # define PIPEX_H
 
 # include <unistd.h>
@@ -22,11 +22,8 @@
 # include <string.h>
 # include <stdio.h>
 
-# ifndef BUFFER_SIZE
-# define BUFFER_SIZE 10
-# endif
-
-typedef struct s_pipex{
+typedef struct s_pipex
+{
 	pid_t	pid1;
 	pid_t	pid2;
 	char	*exe;
@@ -38,10 +35,9 @@ typedef struct s_pipex{
 	int		outfile;
 }			t_pipex;
 
-
 //** INIT **
 
-int	main(int argc, char *argv[], char *envp[]);
+int		main(int argc, char *argv[], char *envp[]);
 
 //** ERRORS **
 
