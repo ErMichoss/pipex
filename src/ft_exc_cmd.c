@@ -6,7 +6,7 @@
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:21:26 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/03/16 19:34:56 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/03/23 11:20:04 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ char	*get_comand(char **paths, char *comand)
 	char	*exe;
 	int		i;
 
+	i = 0;
 	while (comand[i] != '\0')
 	{
 		if (comand[i] == '/')
@@ -34,7 +35,7 @@ char	*get_comand(char **paths, char *comand)
 		free(exe);
 		paths++;
 	}
-	return (comand);
+	return (NULL);
 }
 
 void	ft_exec_cmd1(char **argv, char **envp, t_pipex pipex)
@@ -47,10 +48,14 @@ void	ft_exec_cmd1(char **argv, char **envp, t_pipex pipex)
 	if (!pipex.exe)
 	{
 		free_process(&pipex);
-		ft_error_msg("Comando not found :(");
+		ft_error_msg("Command not found\n", 1);
 		exit(1);
 	}
-	execve(pipex.exe, pipex.comand, envp);
+	if (execve(pipex.exe, pipex.comand, envp) == -1)
+	{
+		free_process(&pipex);
+		exit(1);
+	}
 }
 
 void	ft_exec_cmd2(char **argv, char **envp, t_pipex pipex)
@@ -63,8 +68,12 @@ void	ft_exec_cmd2(char **argv, char **envp, t_pipex pipex)
 	if (!pipex.exe)
 	{
 		free_process(&pipex);
-		ft_error_msg("Comando not found :(");
+		ft_error_msg("Command not found\n", 1);
 		exit(1);
 	}
-	execve(pipex.exe, pipex.comand, envp);
+	if (execve(pipex.exe, pipex.comand, envp) == -1)
+	{
+		free_process(&pipex);
+		exit(1);
+	}
 }

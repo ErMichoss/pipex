@@ -1,42 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 16:37:40 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/03/23 11:25:20 by nicgonza         ###   ########.fr       */
+/*   Created: 2024/02/24 10:53:14 by nicgonza          #+#    #+#             */
+/*   Updated: 2024/03/02 17:43:33 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/pipex.h"
+#include "../incl/pipex_bonus.h"
 
-void	free_program(t_pipex *pipex)
+int	ft_strncmp(char *str, char *dst, int numb)
 {
 	int	i;
 
 	i = 0;
-	close(pipex->infile);
-	close(pipex->outfile);
-	while (pipex->comands[i])
+	while ((str[i] != '\0' || dst[i] != '\0') && i < numb)
 	{
-		free(pipex->comands[i]);
+		if (str[i] != dst[i])
+			return ((char)str[i] - (char)dst[i]);
 		i++;
 	}
-	free(pipex->comands);
-}
-
-void	free_process(t_pipex *pipex)
-{
-	int	i;
-
-	i = 0;
-	while (pipex->comands[i])
-	{
-		free(pipex->comands[i]);
-		i++;
-	}
-	free(pipex->comands);
-	free(pipex->exe);
+	return (0);
 }
