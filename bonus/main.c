@@ -6,7 +6,7 @@
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:44:09 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/03/23 12:04:28 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/03/31 11:17:10 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,24 @@ void	ft_close_pipes(t_pipex *pipex)
 	}
 }
 
+static void	ft_waitpid(t_pipex *pipex)
+{
+	int	i;
+
+	i = 0;
+	while (i < (pipex->num_pipes))
+	{
+		waitpid(-1, NULL, 0);
+		i++;
+	}
+}
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_pipex	pipex;
 
+	if (argc == 1)
+		ft_error_msg("The number of arguments introduced is incorrect", 1);
 	if (argc < check_heredoc(argv[1], &pipex))
 		ft_error_msg("The number of arguments introduced is incorrect", 1);
 	ft_infile(argv, &pipex);
@@ -65,11 +79,9 @@ int	main(int argc, char *argv[], char *envp[])
 	create_pipes(&pipex);
 	pipex.pipe_id = -1;
 	while (++(pipex.pipe_id) < pipex.num_cmd)
-	{
 		ft_exec_comands(pipex, argv, envp);
-		ft_close_pipes(&pipex);
-		waitpid(-1, NULL, 0);
-	}
+	ft_close_pipes(&pipex);
+	ft_waitpid(&pipex);
 	process_free(&pipex);
 	return (0);
 }
