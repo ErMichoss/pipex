@@ -83,12 +83,10 @@ void	ft_exec_comands(t_pipex pipex, char **argv, char **envp)
 		if (!pipex.exe)
 		{
 			child_free(&pipex);
-			exit(1);
 		}
 		if (execve(pipex.exe, pipex.comand, envp) == -1)
 		{
 			child_free(&pipex);
-			exit(1);
 		}
 	}
 }
