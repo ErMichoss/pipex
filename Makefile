@@ -6,7 +6,7 @@
 #    By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 15:45:13 by nicgonza          #+#    #+#              #
-#    Updated: 2024/03/08 12:43:19 by nicgonza         ###   ########.fr        #
+#    Updated: 2024/04/01 10:56:15 by nicgonza         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ BNS_NAME = pipex_bonus
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 
 RM = rm -f
 

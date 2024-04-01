@@ -6,7 +6,7 @@
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 10:39:43 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/03/18 16:29:52 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/04/01 11:29:48 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	check_heredoc(char *argv, t_pipex *pipex)
 {
-	if (!strncmp("here_doc", argv, 9))
+	if (!ft_strncmp("here_doc", argv, 9))
 	{
 		pipex->here_doc = 1;
 		return (6);
@@ -28,7 +28,7 @@ int	check_heredoc(char *argv, t_pipex *pipex)
 
 void	ft_infile(char **argv, t_pipex *pipex)
 {
-	if (!strncmp("here_doc", argv[1], 9))
+	if (!ft_strncmp("here_doc", argv[1], 9))
 		here_doc(argv[2], pipex);
 	else
 	{

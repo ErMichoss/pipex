@@ -6,7 +6,7 @@
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:44:09 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/03/31 11:17:10 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/04/01 11:29:13 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 char	*find_path(char **envp)
 {
+	if(*envp == NULL)
+		ft_error_msg("Error finding PATH variable", 1);
 	while (ft_strncmp("PATH", *envp, 4))
 		envp++;
 	return (*envp + 5);
@@ -26,7 +28,7 @@ void	ft_error_msg(char *s, int n)
 	i = 0;
 	while (s[i] != '\0')
 	{
-		write(1, &s[i], 1);
+		write(2, &s[i], 1);
 		i++;
 	}
 	if (n == 1)
