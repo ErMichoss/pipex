@@ -6,19 +6,24 @@
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:44:09 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/04/01 11:29:13 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:40:39 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/pipex_bonus.h"
 
-char	*find_path(char **envp)
+char	*ft_findpath(char **envp)
 {
-	if(*envp == NULL)
+	if (*envp == NULL)
 		ft_error_msg("Error finding PATH variable", 1);
-	while (ft_strncmp("PATH", *envp, 4))
+	while (envp)
+	{
+		if (ft_strncmp("PATH=", *envp, 5) == 0)
+			return (*envp + 5);
 		envp++;
-	return (*envp + 5);
+	}
+	ft_error_msg("Error finding PATH variable", 1);
+	return (NULL);
 }
 
 void	ft_error_msg(char *s, int n)
@@ -31,8 +36,7 @@ void	ft_error_msg(char *s, int n)
 		write(2, &s[i], 1);
 		i++;
 	}
-	if (n == 1)
-		exit(1);
+	exit(n);
 }
 
 void	ft_close_pipes(t_pipex *pipex)
@@ -74,7 +78,7 @@ int	main(int argc, char *argv[], char *envp[])
 	pipex.pipe_fd = (int *)malloc((sizeof (int)) * pipex.num_pipes);
 	if (!pipex.pipe_fd)
 		ft_error_msg("Error al reservar memoria para los pipes", 1);
-	pipex.paths = find_path(envp);
+	pipex.paths = ft_findpath(envp);
 	pipex.comands = ft_split(pipex.paths, ':');
 	if (!pipex.comands)
 		free_pipe(&pipex);

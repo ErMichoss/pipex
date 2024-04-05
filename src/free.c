@@ -39,5 +39,4 @@ void	free_process(t_pipex *pipex)
 	}
 	free(pipex->comands);
 	free(pipex->exe);
-	ft_error_msg("Command not found\n", 1);
 }

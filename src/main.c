@@ -6,7 +6,7 @@
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:46:07 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/04/01 11:26:49 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/04/05 19:02:31 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,14 @@ char	*ft_findpath(char **envp)
 {
 	if (*envp == NULL)
 		ft_error_msg("Error finding PATH variable", 1);
-	while (ft_strncmp("PATH=", *envp, 5))
+	while (envp)
+	{
+		if (ft_strncmp("PATH=", *envp, 5) == 0)
+			return (*envp + 5);
 		envp++;
-	return (*envp + 5);
+	}
+	ft_error_msg("Error finding PATH variable", 1);
+	return (NULL);
 }
 
 void	ft_error_msg(char *s, int n)
@@ -31,8 +36,7 @@ void	ft_error_msg(char *s, int n)
 		write(2, &s[i], 1);
 		i++;
 	}
-	if (n == 1)
-		exit(1);
+	exit(n);
 }
 
 static void	close_pipes(t_pipex *pipex)
@@ -52,7 +56,7 @@ int	main(int argc, char *argv[], char *envp[])
 		ft_error_msg("Error opening file", 1);
 	pipex.outfile = open(argv[argc - 1], O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (pipex.outfile == -1)
-		ft_error_msg("Error opening file", 1);
+		ft_error_msg("Error opening file", 127);
 	if (pipe(pipex.pipe_fd) < 0)
 		ft_error_msg("Error with pipe", 1);
 	pipex.paths = ft_findpath(envp);

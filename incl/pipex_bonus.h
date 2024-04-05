@@ -6,7 +6,7 @@
 /*   By: nicgonza <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:47:46 by nicgonza          #+#    #+#             */
-/*   Updated: 2024/03/31 11:01:17 by nicgonza         ###   ########.fr       */
+/*   Updated: 2024/04/04 19:34:31 by nicgonza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	**ft_split(char const *s, char c);
 //** PIPEX **
 
 void	ft_close_pipes(t_pipex *pipex);
-char	*find_path(char **envp);
+char	*ft_findpath(char **envp);
 void	process_free(t_pipex *pipex);
 void	free_pipe(t_pipex *pipex);
 void	child_free(t_pipex *pipex);

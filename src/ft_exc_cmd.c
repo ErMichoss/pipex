@@ -48,10 +48,12 @@ void	ft_exec_cmd1(char **argv, char **envp, t_pipex pipex)
 	if (!pipex.exe)
 	{
 		free_process(&pipex);
+		ft_error_msg("Command not found\n", 1);
 	}
 	if (execve(pipex.exe, pipex.comand, envp) == -1)
 	{
 		free_process(&pipex);
+		ft_error_msg("Command not found\n", 1);
 	}
 }
 
@@ -65,9 +67,11 @@ void	ft_exec_cmd2(char **argv, char **envp, t_pipex pipex)
 	if (!pipex.exe)
 	{
 		free_process(&pipex);
+		ft_error_msg("Command not found\n", 1);
 	}
 	if (execve(pipex.exe, pipex.comand, envp) == -1)
 	{
 		free_process(&pipex);
+		ft_error_msg("Command not found\n", 1);
 	}
 }
